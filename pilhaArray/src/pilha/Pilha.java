@@ -6,30 +6,40 @@ package pilha;
  */
 public class Pilha {
     
-    int elementos[];
+    protected Object elementos[];
     /** Índice que pega o último elemento armazenado */
-    int topo; 
+    protected int topo; 
     
     public Pilha(int tamanho) {
-        elementos = new int[tamanho]; //Tamanho passado como parametro do construtor
+        elementos = new Object[tamanho]; //Tamanho passado como parametro do construtor
         topo = -1; // posição invalida do vetor 
     }
     
     /** Adiciona um elemento ao topo da pilha */
     public void push(int elemento) {
+        Object novoArrayElementos[];
+        int size;
+        
         if(isFull()) {
-            throw new RuntimeException("Stack Overflow -- Estouro de pilha");
+            size = elementos.length;
+            size = size * 2;
+            novoArrayElementos = new Object[size];
+            
+            for(int i = 0; i < elementos.length; i++) {
+                novoArrayElementos[i] = elementos[i];
+            }
+            elementos = novoArrayElementos;
         }
         topo++;
         elementos[topo] = elemento;
     }
     
     /** Remove o elemento do topo da pilha */
-    public int pop() {
+    public Object pop() {
         if(isEmpty()) {
             throw new RuntimeException("Pilha vazia");
         }
-        int elemento;
+        Object elemento;
         elemento = elementos[topo];
         topo--;
         return elemento;
@@ -46,7 +56,7 @@ public class Pilha {
     }
     
     /** Retorna o elemento no topo (último adicionado) da pilha */
-    public int top(){
+    public Object top(){
         if(isEmpty()) {
             throw new RuntimeException("Pilha vazia");
         }
