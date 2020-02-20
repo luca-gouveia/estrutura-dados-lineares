@@ -1,14 +1,14 @@
 package pilha;
 
+import java.util.Arrays;
 /**
  *
  * @author luca
  */
 public class Pilha {
-    
     protected Object elementos[];
     /** Índice que pega o último elemento armazenado */
-    protected int topo; 
+    private int topo; 
     
     public Pilha(int tamanho) {
         elementos = new Object[tamanho]; //Tamanho passado como parametro do construtor
@@ -16,19 +16,12 @@ public class Pilha {
     }
     
     /** Adiciona um elemento ao topo da pilha */
-    public void push(int elemento) {
+    public void push(Object elemento) {
         Object novoArrayElementos[];
         int size;
         
         if(isFull()) {
-            size = elementos.length;
-            size = size * 2;
-            novoArrayElementos = new Object[size];
-            
-            for(int i = 0; i < elementos.length; i++) {
-                novoArrayElementos[i] = elementos[i];
-            }
-            elementos = novoArrayElementos;
+            throw new RuntimeException("Stack Overflow -- Elemento "+elemento+" não adicionado");
         }
         topo++;
         elementos[topo] = elemento;
@@ -39,12 +32,12 @@ public class Pilha {
         if(isEmpty()) {
             throw new RuntimeException("Pilha vazia");
         }
-        Object elemento;
-        elemento = elementos[topo];
+        Object elemento = elementos[topo];
+        elementos[topo] = null;
         topo--;
         return elemento;
     }
-    
+
     /** Verifica se a pilha está vazia */
     public boolean isEmpty() {
        return (topo == -1);
@@ -62,4 +55,21 @@ public class Pilha {
         }
         return elementos[topo];
     }
+    
+    /** Retorna o número de elementos armazenados na pilha */
+    public int size() {
+        return topo+1;
+    }
+    
+    /** Limpa a pilha */
+    public void clear() {
+       elementos = new Object[elementos.length] ;
+       topo = -1;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(elementos); 
+    }
+    
 }

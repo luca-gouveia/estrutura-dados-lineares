@@ -13,14 +13,29 @@ public class Main {
         p.push(3);
         p.push(2);
         p.push(1);
+        p.push("Luca");
+        p.push("%");
         p.push(1);
-        p.push(1);
-        p.push(1);
-        p.push(1);
+        p.push(10);
+        p.push(9);
         
-        for (int i = 0; i < p.elementos.length; i++){
-            System.out.println(p.elementos[i]);
-        }
+        System.out.println("stack = "+ p);
+        System.out.println("len = "+p.size());
+
+        
+        System.out.println("Removido ->"+p.pop());
+        System.out.println("Removido ->"+p.pop());
+        
+        System.out.println("stack = "+ p);
+        System.out.println("len = "+p.size());
+        
+        p.push(120);
+        
+        System.out.println("stack = "+ p);
+        System.out.println("len = "+p.size());
+        
+        p.clear();
+        System.out.println("stack = "+ p);
 
     }
 }
