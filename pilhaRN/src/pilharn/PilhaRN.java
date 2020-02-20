@@ -8,9 +8,9 @@ import java.util.Arrays;
  */
 public class PilhaRN {
       
-     Object elementos[];
-     int topoR;   
-     int topoN; 
+    private Object elementos[];
+    private int topoR;   
+    private int topoN; 
  
     public PilhaRN(int tamanho) {
         elementos = new Object[tamanho]; //Tamanho passado como parametro do construtor
@@ -18,9 +18,14 @@ public class PilhaRN {
         topoN = tamanho; 
     }
 
-    /** Retorna o número de elementos das duas pilhas */
-    public int size() {
-        return -1; //TODO
+    /** Retorna o número de elementos das da pilha Rubro (vermelha)*/
+    public int sizeR() {
+        return topoR+1; //TODO
+    }
+    
+    /** Retorna o número de elementos das da pilha Negra (preta)*/
+    public int sizeN() {
+        return elementos.length - topoN;
     }
     
     /** Verifica se a pilha Rubro (vermelho) está vazia */
@@ -38,39 +43,45 @@ public class PilhaRN {
         return (topoR+1 == topoN);
     }
     
-    /** Adiciona um elemento ao topo da pilha Rubro (vermelha) - mais à direita */
-    public void pushR() {
+    private void duplicarArray(){
         Object novoArrayElementos[];
         int size;
         int size_elementos;
         
+        size = elementos.length;
+        size = size * 2;
+        size_elementos = elementos.length;
+        novoArrayElementos = new Object[size];
+            
+        // Inserindo os elementos de Rubro (vermelha) no novo array
+        for(int i = 0; i <= topoR; i++) {
+            novoArrayElementos[i] = elementos[i];
+        }
+            
+        // Inserindo os elementos de Negra (preta) no novo array
+        for(int i = size_elementos; i > topoN; i--) {
+            novoArrayElementos[(size)-1] = elementos[size_elementos-1];
+            size_elementos--;
+            size--;
+        }
+        topoN = size;
+            
+        elementos = novoArrayElementos;       
+    }
+    
+    /** Adiciona um elemento ao topo da pilha Rubro (vermelha) - mais à direita */
+    public void pushR() {
         if(isFull()) {
-            size = elementos.length;
-            size = size * 2;
-            size_elementos = elementos.length;
-            novoArrayElementos = new Object[size];
-            
-            // Inserindo os elementos de Rubro (vermelha) no novo array
-            for(int i = 0; i <= topoR; i++) {
-                novoArrayElementos[i] = elementos[i];
-            }
-            
-            // Inserindo os elementos de Negra (preta) no novo array
-            for(int i = size_elementos; i > topoN; i--) {
-                novoArrayElementos[(size)-1] = elementos[size_elementos-1];
-                size_elementos--;
-            }
-            
-            elementos = novoArrayElementos;
+            duplicarArray();
         }
         topoR++;
         elementos[topoR] = 'R';
-    }
+    }   
     
     /** Adiciona um elemento ao topo da pilha Negra (preta) - mais à esquerda */
     public void pushN() {
         if(isFull()) {
-            throw new RuntimeException("Stack Overflow!!! -- Pilha cheia");
+            duplicarArray();
         }
         topoN--;
         elementos[topoN] = 'N';
