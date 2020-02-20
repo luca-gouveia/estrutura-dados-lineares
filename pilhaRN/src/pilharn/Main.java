@@ -19,14 +19,29 @@ public class Main {
         p.pushN();
         p.pushN();
         
-            
-        System.out.println(p.isFull()+""+p.topoR+""+p.topoN);
-        System.out.println(p.topoN+" "+p.topoR);
+        p.popN();
+        p.popN();
+        p.popN();
+        p.popN();
+        p.popN();
+        
+        p.pushR();
+        p.pushN();
+        p.pushN();
+        p.pushN();
+        p.pushN();
+        p.popN();
+        p.pushR();
 
-            
-        for(int i = 0; i < p.size(); i ++) {
-            System.out.println(p.elementos[i]);
-        }
+        System.out.println(p.topoR);
+        System.out.println(p.topoN);
+        System.out.println(p);
+        
+        p.pushR();
+        
+        System.out.println(p);
+        
+       
     }
     
 }
