@@ -6,9 +6,8 @@ import java.util.Arrays;
  * @author luca
  */
 public class Pilha {
-    protected Object elementos[];
-    /** Índice que pega o último elemento armazenado */
-    private int topo; 
+    private Object elementos[];
+    private int topo; // Índice que pega o último elemento armazenado
     
     public Pilha(int tamanho) {
         elementos = new Object[tamanho]; //Tamanho passado como parametro do construtor
