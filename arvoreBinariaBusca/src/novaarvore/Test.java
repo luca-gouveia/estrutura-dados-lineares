@@ -29,13 +29,20 @@ public class Test {
         arv2.insert(15);
         arv2.insert(22);
 
+        
         arv2.insert(25);
+        arv2.remover(5);
 
         
         arv2.mostrar(arv2);
         arv2.size();
+        System.out.println(arv2.search(25));
         arv2.height();
-//        arv2.depth(4)
+        arv2.root();
+        arv2.depth(5);
+
+
+
         
 //        System.out.println("RESULTADO = > "+arv.comparaArvBinPesq(arv, arv2));
     }
